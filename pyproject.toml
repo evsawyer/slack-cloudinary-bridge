@@ -11,3 +11,6 @@ dependencies = [
     "mcp[cli]>=1.6.0",
     "requests>=2.32.3",
 ]
+
+[project.scripts]
+run-slack-cloudinary-bridge = "slack_cloudinary_bridge:main"
