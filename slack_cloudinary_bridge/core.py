@@ -55,5 +55,5 @@ async def upload_slack_image(slack_url: str) -> str:
         print(f"An unexpected error occurred: {e}") 
         return f"An unexpected error occurred. Check logs."
 
-if __name__ == "__main__":
-    mcp.run(transport='stdio')
+# if __name__ == "__main__":
+#     mcp.run(transport='stdio')
