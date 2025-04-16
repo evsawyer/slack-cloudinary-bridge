@@ -23,8 +23,8 @@ async def download_slack_image(slack_url: str) -> bytes:
         ValueError: If the BOT_TOKEN environment variable is not set.
     """
     slack_token = os.environ.get("BOT_TOKEN")
-    if not slack_token:
-        raise ValueError("BOT_TOKEN environment variable not set.")
+    # if not slack_token:
+        # raise ValueError("BOT_TOKEN environment variable not set.")
         
     headers = {
         "Authorization": f"Bearer {slack_token}"
@@ -56,7 +56,7 @@ async def upload_to_cloudinary(image_bytes: bytes) -> str:
         if not api_key: missing.append("CLOUDINARY_API_KEY")
         if not api_secret: missing.append("CLOUDINARY_API_SECRET")
         if not cloud_name: missing.append("CLOUDINARY_CLOUD_NAME")
-        raise ValueError(f"Missing Cloudinary environment variables: {', '.join(missing)}")
+        # raise ValueError(f"Missing Cloudinary environment variables: {', '.join(missing)}")
 
     # Note: Consider configuring Cloudinary once globally instead of per-call if possible.
     cloudinary.config(
@@ -69,14 +69,16 @@ async def upload_to_cloudinary(image_bytes: bytes) -> str:
     result = cloudinary.uploader.upload(image_bytes)
     if not result or "secure_url" not in result:
         # Or raise a custom exception
-        raise RuntimeError(f"Cloudinary upload failed or did not return a secure_url. Result: {result}") 
+        pass
+        # raise RuntimeError(f"Cloudinary upload failed or did not return a secure_url. Result: {result}") 
     return result["secure_url"]
 
 # Helper function to check for required environment variables
 def check_env_vars(*vars):
     missing = [var for var in vars if not os.environ.get(var)]
     if missing:
-        return f"Error: Missing required environment variables: {', '.join(missing)}"
+        # return f"Error: Missing required environment variables: {', '.join(missing)}"
+        pass
     return None
 
 @mcp.tool()
@@ -112,15 +114,18 @@ async def upload_slack_image(slack_url: str) -> str:
     except ValueError as e:
         # Catch errors from missing env vars within helpers (redundant but safe)
         # Or other ValueErrors raised by the helpers
-        return f"Configuration Error: {e}"
+        # return f"Configuration Error: {e}"
+        pass
     except RuntimeError as e:
         # Catch upload errors from cloudinary_helper
-        return f"Upload Error: {e}"
+        # return f"Upload Error: {e}"
+        pass
     except Exception as e:
         # Catch other potential exceptions (e.g., network errors from requests)
         # Log the full error for debugging in a real app
-        print(f"An unexpected error occurred: {e}") 
-        return f"An unexpected error occurred. Check logs."
+        # print(f"An unexpected error occurred: {e}") 
+        # return f"An unexpected error occurred. Check logs."
+        pass
 
 # if __name__ == "__main__":
 #     mcp.run(transport='stdio')
