@@ -1,4 +1,4 @@
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 # from .slack_helper import download_slack_image
 # from .cloudinary_helper import upload_to_cloudinary
 import os
