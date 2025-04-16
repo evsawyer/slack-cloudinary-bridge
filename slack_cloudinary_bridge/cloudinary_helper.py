@@ -8,7 +8,7 @@ async def upload_to_cloudinary(image_bytes: bytes) -> str:
     Uploads image bytes to Cloudinary using credentials from env vars and returns the public URL.
     
     Args:
-        image_bytes (bytes): The image content in bytes.
+        image_bytes (bytes): The image content in bytes. 
         
     Returns:
         str: The public URL of the uploaded image.
